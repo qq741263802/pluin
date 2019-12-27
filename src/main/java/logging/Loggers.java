@@ -1,9 +1,11 @@
 package logging;
-
+import com.imcon.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Logger {
+public class Loggers {
 
     private String name;
     public  int price;
@@ -20,7 +22,7 @@ public class Logger {
     }
 
 
-    public   Logger(String name)
+    public Loggers(String name)
     {
 
         this.name=name;
@@ -28,6 +30,10 @@ public class Logger {
         System.out.println(price);
 
     }
+
+
+
+
 
 
 }
