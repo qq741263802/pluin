@@ -1,4 +1,4 @@
-package com.demo;
+package com.imcon;
 
 import org.apache.jmeter.protocol.java.sampler.AbstractJavaSamplerClient;
 import org.apache.jmeter.protocol.java.sampler.JavaSamplerContext;

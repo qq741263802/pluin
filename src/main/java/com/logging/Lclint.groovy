@@ -1,4 +1,4 @@
-package logging
+package com.logging
 
 class Lclint  extends Loggers implements Openapi,Service{
 
