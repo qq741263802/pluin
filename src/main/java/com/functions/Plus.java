@@ -1,11 +1,13 @@
 package com.functions;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jmeter.engine.util.CompoundVariable;
 import org.apache.jmeter.functions.AbstractFunction;
 import org.apache.jmeter.functions.InvalidVariableException;
 import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jmeter.samplers.Sampler;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,6 +16,9 @@ import java.util.List;
  * @date 2020/10/12 23:48
  */
 public class Plus extends AbstractFunction {
+    private Object[] values;
+    private CompoundVariable first,second;
+
     /**
      * 执行方法
      * @param sampleResult
@@ -22,7 +27,19 @@ public class Plus extends AbstractFunction {
      * @throws InvalidVariableException
      */
     public String execute(SampleResult sampleResult, Sampler sampler) throws InvalidVariableException {
-        return null;
+         first=(CompoundVariable)values[0];
+         second=(CompoundVariable)values[1];
+         if (first.execute().trim()==null || StringUtils.isBlank(first.execute().trim()))
+         {
+             return "第一个参数不能为空";
+         }
+        if (second.execute().trim()==null || StringUtils.isBlank(second.execute().trim()))
+        {
+            return "第二个参数不能为空";
+        }
+        int count=new Integer(first.execute().trim()) + new Integer(second.execute().trim());
+        return String.valueOf(count);
+
     }
 
     /**
@@ -32,6 +49,9 @@ public class Plus extends AbstractFunction {
      */
     public void setParameters(Collection<CompoundVariable> collection) throws InvalidVariableException {
 
+        checkParameterCount(collection,2);
+        values=collection.toArray();
+
     }
 
     /**
@@ -39,7 +59,7 @@ public class Plus extends AbstractFunction {
      * @return
      */
     public String getReferenceKey() {
-        return null;
+        return "_PlusSum";
     }
 
     /**
@@ -47,6 +67,9 @@ public class Plus extends AbstractFunction {
      * @return
      */
     public List<String> getArgumentDesc() {
-        return null;
+        List desc=new ArrayList();
+        desc.add("第一个值");
+        desc.add("第二个值");
+        return desc;
     }
 }
